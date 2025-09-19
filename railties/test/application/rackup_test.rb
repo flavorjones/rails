@@ -31,6 +31,16 @@ module ApplicationTests
       end
     end
 
+    test "config.ru can be racked up under a relative root" do
+      old_relative_url_root, ENV["RAILS_RELATIVE_URL_ROOT"] = ENV["RAILS_RELATIVE_URL_ROOT"], "/chat"
+      Dir.chdir app_path do
+        @app = rackup
+        assert_welcome get("/chat")
+      end
+    ensure
+      ENV["RAILS_RELATIVE_URL_ROOT"] = old_relative_url_root
+    end
+
     test "Rails.application is available after config.ru has been racked up" do
       rackup
       assert_kind_of Rails::Application, Rails.application

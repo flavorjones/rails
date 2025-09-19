@@ -1,3 +1,11 @@
+*   Respect the `RAILS_RELATIVE_URL_ROOT` in the generated rackup config file `config.ru`.
+
+    This change will allow Rails apps to be mounted at a subfolder by setting the
+    `RAILS_RELATIVE_URL_ROOT` environment variable, with no further changes needed to the rackup
+    file.
+
+    *Mike Dalessio*
+
 *   Show engine routes in `/rails/info/routes` as well.
 
     *Petrik de Heus*
